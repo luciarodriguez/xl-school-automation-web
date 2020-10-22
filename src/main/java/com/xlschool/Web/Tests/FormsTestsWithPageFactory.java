@@ -4,18 +4,13 @@ import com.xlschool.Web.Pages.FormsPage;
 import com.xlschool.Web.Pages.HomePage;
 import com.xlschool.Web.Pages.PracticeFormsPage;
 import com.xlschool.framework.tests.base.BaseTest;
-import com.xlschool.framework.utils.Utils;
-import com.xlschool.framework.utils.WebUtils;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.security.PrivilegedActionException;
 import java.util.List;
 
 public class FormsTestsWithPageFactory extends BaseTest {
-
-
 
     @Test
     public void guionDeLucia(){
@@ -27,26 +22,25 @@ public class FormsTestsWithPageFactory extends BaseTest {
         PracticeFormsPage.clickSubmit();
         PracticeFormsPage.clickHeader();
         Assert.assertEquals(headerStudentRegistrationFormActualText, headerStudentRegistrationFormExpectedText);
-        PracticeFormsPage formsPageNonStatic = new PracticeFormsPage();
-        formsPageNonStatic.addIncorrectUserNumber();
+        PracticeFormsPage.addIncorrectUserNumber();
         String inputMobileBorderColorHexExpected = "#dc3545";
         String inputMobileBorderColorHexActual = PracticeFormsPage.getMobileNumberColor();
         Assert.assertEquals(inputMobileBorderColorHexActual,inputMobileBorderColorHexExpected);
         PracticeFormsPage.clearMobileNumber();
-        formsPageNonStatic.addCorrectUserNumber();
+        PracticeFormsPage.addCorrectUserNumber();
         String inputMobileBorderColorHexExpectedCorrect = "#28a745";
         String inputMobileBorderColorActualCorrect = PracticeFormsPage.getMobileNumberColor();
         Assert.assertEquals(inputMobileBorderColorHexExpectedCorrect,inputMobileBorderColorActualCorrect);
-        formsPageNonStatic.addFirstName();
-        formsPageNonStatic.addLastName();
-        formsPageNonStatic.addUserEmail();
-        formsPageNonStatic.clickRadioButtonFemale();
-        formsPageNonStatic.clickSubjects();
-        formsPageNonStatic.enterSubject();
-        formsPageNonStatic.clickHobbies();
-        formsPageNonStatic.enterAddress();
-        formsPageNonStatic.selectState();
-        formsPageNonStatic.selectCity();
+        PracticeFormsPage.addFirstName();
+        PracticeFormsPage.addLastName();
+        PracticeFormsPage.addUserEmail();
+        PracticeFormsPage.clickRadioButtonFemale();
+        PracticeFormsPage.clickSubjects();
+        PracticeFormsPage.enterSubject();
+        PracticeFormsPage.clickHobbies();
+        PracticeFormsPage.enterAddress();
+        PracticeFormsPage.selectState();
+        PracticeFormsPage.selectCity();
         PracticeFormsPage.clickSubmit();
         PracticeFormsPage.loadConfirmationFormValues();
         String headerFormSubmissionConfirmationExpectedText = "Thanks for submitting the form";

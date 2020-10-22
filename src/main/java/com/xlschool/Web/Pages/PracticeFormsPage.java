@@ -2,7 +2,6 @@ package com.xlschool.Web.Pages;
 
 import com.github.javafaker.Faker;
 import com.xlschool.framework.pages.base.BasePage;
-import com.xlschool.framework.utils.Utils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -12,24 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import static com.xlschool.framework.driver.DriverHandler.getDriver;
 import static com.xlschool.framework.utils.Utils.*;
+import static com.xlschool.framework.datahelper.formdata.*;
 
 public class PracticeFormsPage extends BasePage {
-
-    private static boolean noScroll;
-    private static Faker faker = new Faker();
-    private static String firstName = faker.name().firstName();
-    private static String mobileNumberConfirmationText = faker.number().digits(10);
-    private static String lastName = faker.name().lastName();
-    private static String fullNameConfirmationText = firstName + " " + lastName;
-    private static String studentEmailConfirmationText = faker.internet().safeEmailAddress();
-    private static String addressConfirmationText = faker.address().fullAddress();
-    private static String subjectConfirmationText = "Social Studies";
-    private static String stateName = "NCR";
-    private static String cityName = "Delhi";
-    private static String stateCityConfirmationText = stateName + " " + cityName;
-    private static String genderConfirmationText = "Female";
-    private static String hobbiesConfirmationText = "Sports";
-
 
     @FindBy(xpath = "//div[@class='practice-form-wrapper']//h5[contains(text(), 'Registration')]")
     private static WebElement headerStudentRegistrationForm;
@@ -112,45 +96,13 @@ public class PracticeFormsPage extends BasePage {
         PageFactory.initElements(getDriver(),PracticeFormsPage.class);
     }
 
-    public static String getFullNameConfirmationText() {
-        return fullNameConfirmationText;
-    }
-
-    public static String getGenderConfirmationText(){
-        return genderConfirmationText;
-    }
-
-    public static String getHobbiesConfirmationText(){
-        return hobbiesConfirmationText;
-    }
-
-    public static String getStateCityConfirmationText(){
-        return stateCityConfirmationText;
-    }
-
-    public static String getStudentEmailConfirmationText(){
-        return studentEmailConfirmationText;
-    }
-
-    public static String getMobileNumberConfirmationText(){
-        return mobileNumberConfirmationText;
-    }
-
-    public static String getSubjectConfirmationText(){
-        return subjectConfirmationText;
-    }
-
-    public static String getAddressConfirmationText(){
-        return addressConfirmationText;
-    }
-
-    public void addCorrectUserNumber(){
+    public static void addCorrectUserNumber(){
         highlighElement(inputMobile);
         pauseDriver();
         inputMobile.sendKeys(mobileNumberConfirmationText);
     }
 
-    public void addIncorrectUserNumber(){
+    public static void addIncorrectUserNumber(){
         highlighElement(inputMobile);
         pauseDriver();
         inputMobile.sendKeys(firstName);
@@ -166,63 +118,63 @@ public class PracticeFormsPage extends BasePage {
         inputMobile.clear();
     }
 
-    public void addFirstName(){
+    public static void addFirstName(){
         highlighElement(inputFirstName);
         pauseDriver();
         inputFirstName.sendKeys(firstName);
     }
 
-    public void addLastName(){
+    public static void addLastName(){
         highlighElement(inputLastName);
         pauseDriver();
         inputLastName.sendKeys(lastName);
     }
 
-    public void addUserEmail(){
+    public static void addUserEmail(){
         highlighElement(inputUserEmail);
         pauseDriver();
         inputUserEmail.sendKeys(studentEmailConfirmationText);
     }
 
-    public void clickRadioButtonFemale(){
+    public static void clickRadioButtonFemale(){
         highlighElement(radiobuttonFemale);
         pauseDriver();
         radiobuttonFemale.click();
     }
 
-    public void clickSubjects(){
+    public static void clickSubjects(){
         highlighElement(containerSubjects);
         containerSubjects.click();
         pauseDriver();
         inputSubjects.click();
     }
 
-    public void enterSubject(){
+    public static void enterSubject(){
         pauseDriver();
         inputSubjects.sendKeys(subjectConfirmationText);
         pauseDriver();
         inputSubjects.sendKeys(Keys.RETURN);
     }
 
-    public void clickHobbies(){
+    public static void clickHobbies(){
         highlighElement(hobbiesSports);
         pauseDriver();
         hobbiesSports.click();
     }
 
-    public void enterAddress(){
+    public static void enterAddress(){
         scrollToElement(buttonSubmitStudentRegistrationForm);
         pauseDriver();
         currentAddress.sendKeys(addressConfirmationText);
     }
 
-    public void selectState(){
+    public static void selectState(){
         stateDropdown.click();
         pauseDriver();
         inputStateOption.sendKeys(stateName, Keys.RETURN);
     }
 
-    public void selectCity(){
+    public static void selectCity(){
         cityDropdown.click();
         pauseDriver();
         inputCityOption.sendKeys(cityName, Keys.RETURN);
@@ -238,6 +190,15 @@ public class PracticeFormsPage extends BasePage {
         String addressConfirmationText = addressConfirmation.getText();
         String stateCityConfirmationText = stateCityConfirmation.getText();
     }
+
+    public static String getFullNameConfirmationText() { return fullNameConfirmationText; }
+    public static String getGenderConfirmationText(){ return genderConfirmationText; }
+    public static String getHobbiesConfirmationText(){ return hobbiesConfirmationText; }
+    public static String getStateCityConfirmationText(){ return stateCityConfirmationText; }
+    public static String getStudentEmailConfirmationText(){ return studentEmailConfirmationText; }
+    public static String getMobileNumberConfirmationText(){ return mobileNumberConfirmationText; }
+    public static String getSubjectConfirmationText(){ return subjectConfirmationText; }
+    public static String getAddressConfirmationText(){ return addressConfirmationText; }
 
     public static String getFullName() {
         return fullNameConfirmationText;
